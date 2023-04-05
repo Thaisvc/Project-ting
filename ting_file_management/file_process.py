@@ -2,7 +2,6 @@ from ting_file_management.file_management import txt_importer
 
 
 def process(path_file, instance):
-
     lines = txt_importer(path_file)
 
     file_dic = {
@@ -16,12 +15,15 @@ def process(path_file, instance):
             return
 
     instance.enqueue(file_dic)
-
     print(f"Arquivo {path_file} processado: {file_dic}")
 
 
 def remove(instance):
-    """Aqui irá sua implementação"""
+    if len(instance) == 0:
+        print("Não há elementos")
+    else:
+        remove_file = instance.dequeue()
+        print(f"Arquivo {remove_file['nome_do_arquivo']} removido com sucesso")
 
 
 def file_metadata(instance, position):
