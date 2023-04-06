@@ -21,7 +21,21 @@ def exists_word(word, instance):
 
 
 def search_by_word(word, instance):
-    """Aqui irá sua implementação"""
+    info = []
+    for file in instance._queue:
+        name_file = file["nome_do_arquivo"]
+        row_file = file["linhas_do_arquivo"]
+        occurrences = []
+        for index, row in enumerate(row_file):
+            if word.lower() in row.lower():
+                occurrences.append({"linha": index + 1, "conteudo": row})
+        if occurrences:
+            info.append({
+                "palavra": word,
+                "arquivo": name_file,
+                "ocorrencias": occurrences
+            })
+    return info
 
 
 """ if __name__ == "__main__":
